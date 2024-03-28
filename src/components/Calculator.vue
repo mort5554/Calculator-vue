@@ -4,16 +4,16 @@ import { ref } from 'vue';
 const screen = ref("")
 const previousNumber = ref()
 const currentNumber = ref()
-const firstNumbersArray = ref([])
 let operator
 
 function addNumber(num){
-    if(firstNumbersArray.value.length > 12){
+    if(screen.value.length > 12){
         alert("Too lot of numbers")
     }
-    screen.value += num
-    firstNumbersArray.value.push(num)
-    currentNumber.value = screen.value
+    else{
+        screen.value += num
+        currentNumber.value = screen.value
+    }
 }
 function opUsed(op){
     previousNumber.value = currentNumber.value
@@ -26,18 +26,26 @@ function equation(){
     if(operator === "+"){
         outcome = parseFloat(previousNumber.value) + parseFloat(currentNumber.value)
         screen.value = outcome
+        currentNumber.value = outcome
+        previousNumber.value = ""
     }
     else if(operator === "-"){
         outcome = parseFloat(previousNumber.value) - parseFloat(currentNumber.value)
         screen.value = outcome
+        currentNumber.value = outcome
+        previousNumber.value = ""
     }
     else if(operator === "x"){
         outcome = parseFloat(previousNumber.value) * parseFloat(currentNumber.value)
         screen.value = outcome
+        currentNumber.value = outcome
+        previousNumber.value = ""
     }
     else if(operator === "/"){
         outcome = parseFloat(previousNumber.value) / parseFloat(currentNumber.value)
         screen.value = outcome
+        currentNumber.value = outcome
+        previousNumber.value = ""
     }
 }
 function deleteLastNumber(){
