@@ -5,23 +5,32 @@ const screen = ref("")
 const previousNumber = ref()
 const currentNumber = ref()
 let operator
-
+const operatorClicked = ref(false)
 function addNumber(num){
+    operatorClicked.value = false
     if(screen.value.length > 12){
         alert("Too lot of numbers")
     }
     else{
         screen.value += num
         currentNumber.value = screen.value
+        console.log(currentNumber.value, previousNumber.value, operator)
     }
 }
 function opUsed(op){
+    if(operatorClicked.value == false){
+    console.log(op)
     previousNumber.value = currentNumber.value
     currentNumber.value = ""
     screen.value = ''
     return operator = op
+    }
+    else{}
+
 }
 function equation(){
+    if(operatorClicked.value == false && previousNumber.value !== undefined 
+    && currentNumber.value !== undefined){
     let outcome
     if(operator === "+"){
         outcome = parseFloat(previousNumber.value) + parseFloat(currentNumber.value)
@@ -48,6 +57,8 @@ function equation(){
         previousNumber.value = ""
     }
 }
+else{}
+}
 function deleteLastNumber(){
     screen.value = screen.value.toString().slice(0, -1)
     currentNumber.value = currentNumber.value.toString().slice(0, -1)
@@ -69,19 +80,19 @@ function deleteLastNumber(){
                 <button @click.prevent="addNumber(7)">7</button>
                 <button @click.prevent="addNumber(8)">8</button>
                 <button @click.prevent="addNumber(9)">9</button>
-                <button @click.prevent="opUsed(`/`)">÷</button>
+                <button @click.prevent="opUsed(`/`), operatorClicked = true">÷</button>
                 <button @click.prevent="addNumber(4)">4</button>
                 <button @click.prevent="addNumber(5)">5</button>
                 <button @click.prevent="addNumber(6)">6</button>
-                <button @click.prevent="opUsed(`x`)">x</button>
+                <button @click.prevent="opUsed(`x`), operatorClicked = true">x</button>
                 <button @click.prevent="addNumber(1)">1</button>
                 <button @click.prevent="addNumber(2)">2</button>
                 <button @click.prevent="addNumber(3)">3</button>
-                <button @click.prevent="opUsed(`-`)">-</button>
+                <button @click.prevent="opUsed(`-`), operatorClicked = true">-</button>
                 <button @click.prevent="addNumber(`.`)">.</button>
                 <button @click.prevent="addNumber(0)">0</button>
-                <button @click.prevent="equation()">=</button>
-                <button @click.prevent="opUsed(`+`)">+</button>
+                <button @click.prevent="equation(), operatorClicked = true">=</button>
+                <button @click.prevent="opUsed(`+`), operatorClicked = true">+</button>
             </form>
         </div>
     </main>
