@@ -31,6 +31,7 @@ function opUsed(op){
 function equation(){
     if(operatorClicked.value == false && previousNumber.value !== undefined 
     && currentNumber.value !== undefined){
+    operatorClicked.value = true
     let outcome
     if(operator === "+"){
         outcome = parseFloat(previousNumber.value) + parseFloat(currentNumber.value)
