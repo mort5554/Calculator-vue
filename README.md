@@ -1,3 +1,6 @@
+A simple calculator that can sometimes jam 
+results --> https://mort5554.github.io/Calculator-vue/
+
 #  Vue-project
 
 This template should help get you started developing with Vue 3 in Vite.
